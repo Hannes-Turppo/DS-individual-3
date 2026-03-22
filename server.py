@@ -49,13 +49,13 @@ store_lock = Lock()
 
 # Save old data to mockDB (file)
 def save_data():
-  with open("./storage.txt", "w", encoding="utf-8") as storage_file:
+  with open("./storage.json", "w", encoding="utf-8") as storage_file:
     json.dump(note_store.to_dict(), storage_file)
 
 # Retrieve old data
 def init_storage():
   try:
-    with open("./storage.txt", "r", encoding="utf-8") as old_storage:
+    with open("./storage.json", "r", encoding="utf-8") as old_storage:
       data = json.load(old_storage)
       return Notes.from_dict(data)
   except (FileNotFoundError, json.JSONDecodeError):
